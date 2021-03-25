@@ -1,11 +1,9 @@
-#Module to create file paths across operating systems
+# Module to create file paths across operating systems
 import os
 # Module for reading CSV files
 import csv
-
+# Module to do statistic calculations
 import statistics
-
-import string
 
 # Path to collect data from the Resources folder
 dirname = os.path.dirname(__file__)
@@ -54,16 +52,16 @@ with open(bank_csv,'r') as csvfile:
     #finds the greatest increase in profits and greatest decrease in losses (date and amount for both)
     for date, change in changes.items():
         if change == max(changes.values()) :
-            gip = "{} ({})".format(date,change)
+            gip = "{} (${})".format(date,change)
         if change == min(changes.values()):
-            gdp = "{} ({})".format(date,change)
+            gdp = "{} (${})".format(date,change).replace('$-', '-$')
 
 
 #Create Financial Analysis result
 message_list= ["\n","Financial Analysis","----------------------------",\
-    f"Total Months : {str(totalMonths)}",f"Total : {str(totalProfitLoss)}",\
-    f"Average Change : {averageChange}",f"Greatest Increase in Profits : {gip}",\
-    f"Greatest Increase in Profits : {gdp}","----------------------------"]
+    f"Total Months : {str(totalMonths)}",f"Total : ${str(totalProfitLoss)}",\
+    f"Average Change : ${averageChange:.2f}",f"Greatest Increase in Profits : {gip}",\
+    f"Greatest Decrease in Profits : {gdp}","----------------------------"]
 
 message = message.join(message_list)
 
