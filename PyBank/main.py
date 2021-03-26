@@ -1,3 +1,4 @@
+  
 # Module to create file paths across operating systems
 import os
 # Module for reading CSV files
@@ -39,8 +40,10 @@ with open(bank_csv,'r') as csvfile:
         #Calculates the net total amount of "Profit/Losses"
         totalProfitLoss +=int(row[1])   
         
-        # Creates changes dictionary with date as index and change as value
-        changes[row[0]] = int(row[1])-previousProfitLoss
+        #Excludes the first row difference(change) as there is no data(ProfitLoss) before that
+        if previousProfitLoss !=0 :
+            # Creates changes dictionary with date as index and change as value
+            changes[row[0]] = int(row[1])-previousProfitLoss
         #Changes previousProfitLoss variable to current ProfitLoss, preparing the variable for next iteration moving down the list
         previousProfitLoss =int(row[1])
     
@@ -60,7 +63,7 @@ with open(bank_csv,'r') as csvfile:
 #Create Financial Analysis result
 message_list= ["\n","Financial Analysis","----------------------------",\
     f"Total Months : {str(totalMonths)}",f"Total : ${str(totalProfitLoss)}",\
-    f"Average Change : ${averageChange:.2f}",f"Greatest Increase in Profits : {gip}",\
+    "Average Change : ${:.2f}".format(averageChange).replace('$-', '-$'),f"Greatest Increase in Profits : {gip}",\
     f"Greatest Decrease in Profits : {gdp}","----------------------------"]
 
 message = message.join(message_list)
@@ -73,4 +76,3 @@ outF = open(output_path,'w')
 # Write result using writelines()
 outF.writelines(message)
 outF.close()
-    
