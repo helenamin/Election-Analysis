@@ -1,5 +1,5 @@
 # python-challenge
-This contains two challenges: PyBank and  PyPoll.
+This contains four challenges: PyBank, PyPoll, PyBoss and PyParagraph
 
 
 
@@ -25,4 +25,27 @@ PyPoll
         The total number of votes each candidate won
         The winner of the election based on popular vote
 
+    The script prints the analysis to the terminal as well as exporting the result to a text file .
+
+
+PyBoss
+    Provided python script get employee data as a csv file and coverts the employee records to required format:
+    
+         split Name column into separate First Name and Last Name columns
+         re-write DOB data into MM/DD/YYYY format
+         re-write SSN column to hide the first five numbers from the view
+         re-write State data using two-letter abbreviations
+    
+    The script creates employee_final.csv as output
+
+
+
+PyParagraph
+    Provided python script to automate the analysis of any such passage using these metrics:
+
+        Approximate word count
+        Approximate sentence count
+        Approximate letter count (per word)
+        Average sentence length (in words)
+    
     The script prints the analysis to the terminal as well as exporting the result to a text file .
